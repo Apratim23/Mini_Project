@@ -1,0 +1,221 @@
+/* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+  }
+  
+  /* Registration container */
+  .registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-image: url(https://cdn.builder.io/api/v1/image/assets%2Fd2eb2e04ca8b4bf5b689cd3c62e8d592%2F7cdddebd70de4b9aaaaeec82eb4f4ed5);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  /* Registration form */
+  .registration-form {
+    width: 581px;
+    padding: 44px;
+    border-radius: 50px;
+    background-color: rgba(134, 241, 141, 0.5);
+  }
+  
+  /* Form title */
+  .form-title {
+    color: #000;
+    font-family: "Poppins", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.3px;
+    margin-bottom: 40px;
+  }
+  
+  /* Form fields */
+  .form-field {
+    margin-bottom: 25px;
+  }
+  
+  .field-label {
+    display: block;
+    color: #000;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 125%;
+    margin-bottom: 6px;
+  }
+  
+  /* Text inputs */
+  .text-input {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 10px;
+    border: 1px solid #d8dadc;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #000;
+    background-color: #fff;
+  }
+  
+  /* Password field */
+  .password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-input {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 10px;
+    border: 1px solid #d8dadc;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #000;
+    padding-right: 40px;
+    background-color: #fff;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 16px;
+    cursor: pointer;
+  }
+  
+  .eye-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Select input */
+  .select-wrapper {
+    position: relative;
+  }
+  
+  .select-input {
+    width: 100%;
+    padding: 18px 16px;
+    border-radius: 9px;
+    border: 1px solid #000;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #000;
+    appearance: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-color: #fff;
+  }
+  
+  .select-input:hover {
+    border-color: #333;
+  }
+  
+  .select-input:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Submit button */
+  .submit-button {
+    width: 100%;
+    padding: 17px;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: #000;
+  }
+  
+  /* Error messages */
+  .error-message {
+    display: block;
+    color: #e53935;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  /* Message container */
+  .message-container {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .success-message {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+  }
+  
+  .error-message {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #c62828;
+    border: 1px solid #c62828;
+  }
+  
+  /* Login link */
+  .login-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .login-link a {
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 991px) {
+    .registration-form {
+      width: 100%;
+      max-width: 581px;
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .registration-form {
+      padding: 20px;
+      border-radius: 25px;
+    }
+  
+    .form-title {
+      font-size: 24px;
+    }
+  
+    .text-input,
+    .password-input {
+      padding: 14px 12px;
+    }
+  
+    .select-input {
+      padding: 14px 12px;
+    }
+  }
+  

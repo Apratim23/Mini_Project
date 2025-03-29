@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&family=Inter:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="inventory.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="logo"></div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="#" id="dashboard-link" class="nav-item">Dashboard</a>
+        <a href="inventory.html" class="nav-item">Inventory</a>
+        <a href="cart.html" class="nav-item">Cart</a>
+      </nav>
+      <div class="profile-container">
+        <img src="profile-icon.png" alt="Profile" class="profile-icon" id="profile-icon" />
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="profile.html" class="dropdown-item" id="edit-profile">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a href="customer-history.html" class="dropdown-item" id="history-link">History</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item" id="logout-button">LOGOUT</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-content">
+      <h1 class="welcome-text">Available Inventory</h1>
+
+      <section class="search-section">
+        <div class="search-bar">
+          <i class="ti ti-search"></i>
+          <input type="text" class="search-input" placeholder="Search inventory..." id="search-input" />
+        </div>
+      </section>
+
+      <section class="inventory-table">
+        <div class="table-header">
+          <div class="column-header" data-sort="name">
+            <h3 class="header-text">ITEM NAME</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+          <div class="column-header" data-sort="weight">
+            <h3 class="header-text">STOCK (KG)</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+          <div class="column-header" data-sort="price">
+            <h3 class="header-text">PRICE (₹/KG)</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+          <div class="column-header">
+            <h3 class="header-text">ACTION</h3>
+          </div>
+        </div>
+
+        <div class="inventory-items" id="inventory-items">
+          <!-- Inventory items will be inserted here by JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <script src="inventory.js"></script>
+  </body>
+</html>

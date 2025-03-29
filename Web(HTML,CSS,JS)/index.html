@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <main class="registration-container">
+      <section class="registration-form">
+        <div id="message-container" class="message-container"></div>
+        <h1 class="form-title">Create your account</h1>
+        <form id="registration-form">
+          <div class="form-field">
+            <label for="username" class="field-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Your username"
+              class="text-input"
+              required
+              minlength="3"
+            />
+            <span class="error-message" id="username-error"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="phone" class="field-label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Your Phone Number"
+              class="text-input"
+              required
+              pattern="[0-9]{10}"
+            />
+            <span class="error-message" id="phone-error"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="password" class="field-label">Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="password-input"
+                required
+                minlength="6"
+              />
+              <div class="password-toggle">
+                <svg
+                  id="eye-icon"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="eye-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M2.97712 2L1.87793 3.08126L16.0226 17L17.1218 15.9184L2.97712 2Z"
+                    fill="black"
+                    fill-opacity="0.6"
+                  ></path>
+                  <path
+                    d="M4.20032 5.36629L5.23492 6.38433C4.10236 7.33323 3.20051 8.51437 2.61773 9.54778L2.61595 9.55127C4.23901 12.2216 6.81431 14.7452 10.0647 14.3624C10.942 14.2591 11.7605 13.964 12.5083 13.5417L13.5557 14.572C12.098 15.4926 10.4271 15.9801 8.6166 15.7392C5.35204 15.3047 2.68268 12.67 1 9.57572C1.79005 8.01146 2.87079 6.51495 4.20032 5.36629ZM6.55345 3.85756C7.4663 3.45733 8.45405 3.22194 9.50887 3.20517C9.56744 3.20482 10.2627 3.2373 10.5779 3.28829C10.7756 3.32042 10.9726 3.36059 11.1667 3.41053C14.2634 4.20436 16.5576 6.78038 18 9.43428C17.3949 10.6367 16.6023 11.8102 15.6572 12.8157L14.6538 11.8283C15.3519 11.0879 15.934 10.2637 16.3823 9.46431C16.3823 9.46431 15.9315 8.75116 15.5897 8.30343C15.37 8.01565 15.139 7.73626 14.8962 7.46699C14.7046 7.25465 13.9603 6.53346 13.7832 6.38329C12.5949 5.37782 11.1997 4.58887 9.52626 4.60215C8.87818 4.61227 8.25494 4.738 7.66328 4.94964L6.55345 3.85756Z"
+                    fill="black"
+                    fill-opacity="0.6"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M7.0168 8.13799L7.81548 8.92357L10.8897 11.9486C10.4787 12.1756 10.0045 12.3048 9.50019 12.3048C7.92966 12.3048 6.65479 11.0503 6.65479 9.50493C6.65479 9.00866 6.78646 8.54242 7.0168 8.13799ZM9.44766 6.70575C9.46505 6.7054 9.48279 6.70505 9.50019 6.70505C11.0707 6.70505 12.3456 7.95988 12.3456 9.50493C12.3456 9.52239 12.3456 9.53951 12.3452 9.55662L9.44766 6.70575Z"
+                    fill="black"
+                    fill-opacity="0.6"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="user-type" class="field-label">Who you are?</label>
+            <div class="select-wrapper">
+              <select
+                id="user-type"
+                name="userType"
+                class="select-input"
+                aria-label="Select user type"
+                required
+              >
+                <option value="" disabled selected>Please select...</option>
+                <option value="customer">Customer</option>
+                <option value="farmer">Farmer</option>
+                <option value="vendor">Vendor</option>
+              </select>
+              <span class="error-message" id="user-type-error"></span>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-button">Create account</button>
+        </form>
+
+        <div class="login-link">
+          Already have an account? <a href="login.html">Login here</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput = document.getElementById("password");
+        const eyeIcon = document.getElementById("eye-icon");
+        const registrationForm = document.getElementById("registration-form");
+        const messageContainer = document.getElementById("message-container");
+
+        // Toggle password visibility
+        eyeIcon.addEventListener("click", function () {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+          } else {
+            passwordInput.type = "password";
+          }
+        });
+
+        // Form submission
+        registrationForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Clear previous error messages
+          document
+            .querySelectorAll(".error-message")
+            .forEach((el) => (el.textContent = ""));
+          messageContainer.textContent = "";
+          messageContainer.className = "message-container";
+
+          // Get form data
+          const username = document.getElementById("username").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const password = document.getElementById("password").value;
+          const userType = document.getElementById("user-type").value;
+
+          // Validate username
+          if (usernameExists(username)) {
+            document.getElementById("username-error").textContent =
+              "Username already exists";
+            return;
+          }
+
+          // Create user object
+          const userData = {
+            username,
+            phone,
+            password,
+            userType,
+            registrationDate: new Date().toISOString(),
+          };
+
+          // Save user data
+          try {
+            saveUserData(userData);
+
+            // Show success message
+            messageContainer.textContent =
+              "Registration successful! Redirecting to login...";
+            messageContainer.classList.add("success-message");
+
+            // Reset form
+            registrationForm.reset();
+
+            // Redirect to login page after a delay
+            setTimeout(() => {
+              window.location.href = "login.html";
+            }, 2000);
+          } catch (error) {
+            messageContainer.textContent =
+              "Error saving data. Please try again.";
+            messageContainer.classList.add("error-message");
+            console.error("Registration error:", error);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

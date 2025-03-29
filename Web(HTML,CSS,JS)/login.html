@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js"></script>
+    <script src="debug.js"></script>
+  </head>
+  <body>
+    <main class="registration-container">
+      <section class="registration-form">
+        <div id="message-container" class="message-container"></div>
+
+        <h1 class="form-title">Login to your account</h1>
+
+        <form id="login-form">
+          <div class="form-field">
+            <label for="username" class="field-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Your username"
+              class="text-input"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="password" class="field-label">Password</label>
+            <div class="password-field">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="password-input"
+                required
+              />
+              <div class="password-toggle" id="toggle-password">
+                👁️
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-button">Login</button>
+        </form>
+
+        <div class="login-link">
+          Don't have an account? <a href="index.html">Register here</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("toggle-password");
+        const loginForm = document.getElementById("login-form");
+        const messageContainer = document.getElementById("message-container");
+
+        // Toggle password visibility
+        togglePassword.addEventListener("click", function () {
+          passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        });
+
+        // Form submission
+        loginForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Clear previous messages
+          messageContainer.textContent = "";
+          messageContainer.className = "message-container";
+
+          // Get form data
+          const username = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value;
+
+          // Verify credentials
+          const user = verifyCredentials(username, password);
+
+          if (user) {
+            // Store current user in session properly
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
+
+            // Show success message
+            messageContainer.textContent = "Login successful! Redirecting...";
+            messageContainer.classList.add("success-message");
+
+            // Redirect based on user type
+            setTimeout(() => {  
+              const userType = (user.userType || "").toLowerCase().trim();
+
+              if (userType === "farmer") {
+                window.location.href = "farmer-dashboard.html"; 
+              } else {
+                window.location.href = "dashboard.html";
+              }
+            }, 1500);
+          } else {
+            // Show error message
+            messageContainer.textContent = "Invalid username or password";
+            messageContainer.classList.add("error-message");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agricultural Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&family=Inter:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="logo"></div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="#" id="dashboard-link" class="nav-item">Dashboard</a>
+        <a href="inventory.html" class="nav-item">Inventory</a>
+      </nav>
+      <div class="profile-container">
+        <img src="profile-icon.png" alt="Profile" class="profile-icon" id="profile-icon" />
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="profile.html" class="dropdown-item" id="edit-profile">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a href="customer-history.html" class="dropdown-item" id="history-link">History</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item" id="logout-button">LOGOUT</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-content">
+      <div class="dashboard-header">
+        <h1 class="welcome-text">Welcome <span id="user-name">User</span>!</h1>
+        <div class="header-content">
+          <section class="collection-details">
+            <p>
+              Collection Details&nbsp;<br />
+              <span id="current-time-date"></span><br />
+              <span id="user-type"></span><br />
+            </p>
+          </section>
+          <section class="grass-image">
+            <img src="https://cdn.builder.io/api/v1/image/assets/d2eb2e04ca8b4bf5b689cd3c62e8d592/a6991c811beb47b1abe68620fddb1f75" alt="Grass Image" class="grass-img" />
+          </section>
+        </div>
+      </div>
+
+      <section class="search-section">
+        <h2 class="search-title">Search Crops</h2>
+        <div class="search-bar">
+          <i class="ti ti-search"></i>
+          <input type="text" class="search-input" placeholder="Search crops..." />
+        </div>
+      </section>
+
+      <section class="inventory-table">
+        <div class="table-header">
+          <div class="column-header">
+            <h3 class="header-text">VEGETABLE NAME</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+          <div class="column-header">
+            <h3 class="header-text">STOCK(in KG)</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+          <div class="column-header">
+            <h3 class="header-text">COST(per KG)</h3>
+            <div class="sort-icons">
+              <i class="ti ti-chevron-up"></i>
+              <i class="ti ti-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inventory items -->
+        <div class="inventory-item">
+          <div class="item-cell">Tomato</div>
+          <div class="item-cell">250</div>
+          <div class="item-cell">₹25</div>
+        </div>
+        <div class="inventory-item">
+          <div class="item-cell">Potato</div>
+          <div class="item-cell">500</div>
+          <div class="item-cell">₹15</div>
+        </div>
+        <div class="inventory-item">
+          <div class="item-cell">Onion</div>
+          <div class="item-cell">350</div>
+          <div class="item-cell">₹20</div>
+        </div>
+        <div class="inventory-item">
+          <div class="item-cell">Carrot</div>
+          <div class="item-cell">180</div>
+          <div class="item-cell">₹30</div>
+        </div>
+        <div class="inventory-item">
+          <div class="item-cell">Cabbage</div>
+          <div class="item-cell">120</div>
+          <div class="item-cell">₹40</div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentUserJSON = sessionStorage.getItem("currentUser");
+        if (!currentUserJSON) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        const currentUser = JSON.parse(currentUserJSON.trim());
+        document.getElementById("user-name").textContent = currentUser.username;
+        document.getElementById("user-type").textContent = currentUser.userType;
+
+        // Fix dashboard redirect for farmers
+        const dashboardLink = document.getElementById("dashboard-link");
+        if (currentUser.userType.trim().toLowerCase() === "farmer") {
+          dashboardLink.href = "farmer-dashboard.html";
+        } else {
+          dashboardLink.href = "dashboard.html";
+        }
+
+        // Set current date and time
+        const now = new Date();
+        const timeString = now.toLocaleTimeString("en-US", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        const dateString = now.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        document.getElementById("current-time-date").textContent =
+          `${timeString}, ${dateString}`;
+
+        // Toggle dropdown menu
+        document.getElementById("profile-icon").addEventListener("click", function (event) {
+          event.stopPropagation();
+          document.getElementById("dropdown-menu").classList.toggle("show");
+        });
+
+        // Close the dropdown if clicked outside
+        document.addEventListener("click", function (event) {
+          const dropdownMenu = document.getElementById("dropdown-menu");
+          if (dropdownMenu.classList.contains("show") && !event.target.closest(".profile-container")) {
+            dropdownMenu.classList.remove("show");
+          }
+        });
+
+        // Logout functionality
+        document.getElementById("logout-button").addEventListener("click", function (event) {
+          event.preventDefault();
+          sessionStorage.removeItem("currentUser");
+          window.location.href = "login.html";
+        });
+
+        // Search functionality
+        const searchInput = document.querySelector(".search-input");
+        searchInput.addEventListener("input", function() {
+          const searchTerm = this.value.toLowerCase();
+          const items = document.querySelectorAll(".inventory-item");
+          
+          items.forEach(item => {
+            const itemName = item.querySelector(".item-cell").textContent.toLowerCase();
+            if (itemName.includes(searchTerm)) {
+              item.style.display = "flex";
+            } else {
+              item.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

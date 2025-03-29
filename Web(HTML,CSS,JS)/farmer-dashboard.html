@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Farmer Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&family=Inter:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="farmer-dashboard.css" />
+    <script src="data.js"></script>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="logo"></div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="farmer-dashboard.html" class="nav-item">Dashboard</a>
+        <a href="inventory.html" class="nav-item">Inventory</a>
+      </nav>
+      <div class="profile-container">
+        <img src="profile-icon.png" alt="Profile" class="profile-icon" id="profile-icon" />
+        <div class="dropdown-menu" id="dropdown-menu">
+          <a href="profile.html" class="dropdown-item" id="edit-profile">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a href="farmer-history.html" class="dropdown-item" id="history-link">History</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item" id="logout-button">LOGOUT</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-content">
+      <h1 class="welcome-text">Welcome <span id="user-name">Farmer</span>!</h1>
+
+      <div class="dashboard-header">
+        <section class="collection-details">
+          <p>
+            Collection Details&nbsp;<br />
+            <span id="current-time-date"></span><br />
+            <span id="user-type"></span><br />
+          </p>
+        </section>
+      </div>
+
+      <section class="dashboard-cards">
+        <article class="dashboard-card" id="income-card">
+          <div class="card-icon">
+            <i class="ti ti-currency-rupee"></i>
+          </div>
+          <h2 class="card-title">Total Income</h2>
+          <p class="card-value">₹12,450</p>
+        </article>
+
+        <article class="dashboard-card" id="submit-card">
+          <div class="card-icon">
+            <i class="ti ti-upload"></i>
+          </div>
+          <h2 class="card-title">Submit Crop Data</h2>
+          <button class="card-button">Add New Crop</button>
+        </article>
+
+        <article class="dashboard-card" id="compost-card">
+          <div class="card-icon">
+            <i class="ti ti-leaf"></i>
+          </div>
+          <h2 class="card-title">Request Compost</h2>
+          <button class="card-button">Make Request</button>
+        </article>
+      </section>
+    </main>
+    <script src="farmer-dashboard.js"></script>
+  </body>
+</html>
